@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH1EX3: Your First Canvas Application </title>
+<script src="modernizr.js"></script>
+<script type="text/javascript">
+	window.addEventListener('load',eventWindowLoaded,false);
+	var Debugger = function(){}
+	Debugger.log = function(m){
+		try{
+			console.log(m);
+		}catch(e){
+			return;
+		}
+	}
+
+	function c(c){
+		console.log(c);
+	}
+
+	function eventWindowLoaded(){
+		canvasApp();
+	}
+
+	function canvasSupport(){
+		return Modernizr.canvas;
+	}
+
+	function canvasApp(){
+		var coverWidth=500;
+		var coverHeight=300;
+		if(!canvasSupport()){
+			return;
+		}
+
+		var theCanvas = document.getElementById('canvasOne');
+		var context = theCanvas.getContext("2d");
+
+		Debugger.log('Drawing Canvas');
+
+		//touch event
+		theCanvas.addEventListener("touchstart",function(e){
+			e.preventDefault();
+			console.log(e);
+		},false);
+
+		theCanvas.addEventListener('touchmove', function(e) {
+		  e.preventDefault();
+		  c(theCanvas);
+		  var canvasOffset=theCanvas;
+		},false);
+
+		function drawScreen(){
+			//create ball
+			y +=speed;
+
+			context.fillStyle="#000";
+			context.beginPath();
+			context.arc(0,0,100,0,100*Math.PI/180,false);
+			context.closePath();
+			context.fill();
+			context.rotate(1*Math.PI/180);
+			context.fillStyle="#00f";
+			// context.beginPath();
+			// context.arc(x,y,30,0,Math.PI,true);
+			// context.closePath();
+			context.fillRect(x,0,10,20);
+		}
+
+		var speed = 5;
+		var y = 50;
+		var x = 250;
+
+		function gameLoop(){
+			//window.setTimeout(gameLoop,20);
+			drawScreen();
+		}
+		gameLoop();
+	}
+</script>
+<style type="text/css" style="display:block" contentEditable>
+.content_wrap{position:absolute;top:0;left:0;width:500px;text-align:center;z-index:0;height:300px;}
+#canvasOne{z-index:999;}
+</style>
+</head>
+<body>
+	<style type="text/css" style="display:block" contentEditable>
+		#canvasOne{}
+	</style>
+	<div style="position:relative; top: 50px; left: 50px;">
+		<canvas id="canvasOne" width="500" height="300">
+			Your browser does not support HTML5 Canvas.
+		</canvas>
+	</div>
+</body>
+</html>

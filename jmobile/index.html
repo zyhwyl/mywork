@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title></title>
+	<link href="jquery.mobile-1.1.1.css" rel="stylesheet" />
+	<script src="jquery.min.js"></script>
+	<script src="jquery.mobile-1.1.1.js"></script>
+	<script type="text/javascript">
+		function c(c){console.log(c)};
+		window.onload=function(){
+			$("body").append("<script type='text/javascript' src='http://img.eduuu.com/edu/js/mobile_ggc_bbs.js?20140828'>"+"</"+"script>");
+		}
+		Array.prototype.remove=function(from,to){
+			c((to||from)+1 || this.length)
+			var rest=this.slice((to||from)+1 || this.length);
+			this.length=from<0?this.length+from:from;
+			c(rest);
+			return this.push.apply(this,rest);
+		}
+		var array=["1","2","3","4","5","6"];
+		array.remove(9,-1);
+		c(array);
+	</script>
+</head>
+
+<body id="body">
+<script type="text/javascript" data-dom-cache="false">
+	$(document).on("pageinit", "#page1", function(){
+	});
+	console.log("test");
+</script>
+<div data-role="page" id="page1">
+    <div data-role="header">
+        <h1>Page Title</h1>
+    </div><!-- /header -->
+    <div data-role="content">    
+        <p>Page content goes here.</p>        
+    </div><!-- /content -->
+    <div data-role="footer">	
+        <h4>Page Footer</h4>
+    </div><!-- /footer -->
+    <script type="text/javascript" src="http://img.eduuu.com/edu/js/mobile_ggc_bbs.js?20140828"></script>
+</div><!-- /page -->
+</body>
+
+</html>
